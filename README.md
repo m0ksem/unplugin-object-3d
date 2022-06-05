@@ -1,28 +1,38 @@
-# unplugin-starter
+# unplugin-3d-object
 
-[![NPM version](https://img.shields.io/npm/v/unplugin-starter?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-starter)
+Load whole 3d object while importing .obj files
+## Things to-do
+- Multiple mtl lib support
+- Build-in three-loader support (`import cat from 'cat.obj?three'` must return `Mesh`)
+- Tree-shaking? (Convert object to esm exports)
+- Tests
 
-Starter template for [unplugin](https://github.com/unjs/unplugin).
-
-## Template Usage
-
-To use this template, clone it down using:
-
-```bash
-npx degit antfu/unplugin-starter my-unplugin
+## Usage
+- Place .obj, .mtl and textures somewhere in your project
+- Import .obj file
+```js
+import cat from 'somewhere/cat.obj'
 ```
+- Example usage with three.js
+```js
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js'
 
-And do a global replace of `unplugin-starter` with your plugin name.
+// TODO: Ensure we can set textures so easily
+const createObject = (obj, mtl, textures) => {
+  const m = mtlLoader.parse(mtl, '')
+  objLoader.setMaterials(m)
+  objLoader.setMaterials(textures)
+  return objLoader.parse(obj)
+}
 
-Then you can start developing your unplugin 🔥
-
-To test your plugin, run: `pnpm run dev`
-To release a new version, run: `pnpm run release`
+const cat = createObject(cat.obj, cat.mtl, cat.materials)
+```
 
 ## Install
 
 ```bash
-npm i unplugin-starter
+npm i unplugin-3d-object
 ```
 
 <details>
@@ -30,11 +40,11 @@ npm i unplugin-starter
 
 ```ts
 // vite.config.ts
-import Starter from 'unplugin-starter/vite'
+import loader3dObject from 'unplugin-3d-object/vite'
 
 export default defineConfig({
   plugins: [
-    Starter({ /* options */ }),
+    loader3dObject({ /* options */ }),
   ],
 })
 ```
@@ -48,11 +58,11 @@ Example: [`playground/`](./playground/)
 
 ```ts
 // rollup.config.js
-import Starter from 'unplugin-starter/rollup'
+import loader3dObject from 'unplugin-3d-object/rollup'
 
 export default {
   plugins: [
-    Starter({ /* options */ }),
+    loader3dObject({ /* options */ }),
   ],
 }
 ```
@@ -68,7 +78,7 @@ export default {
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-starter/webpack')({ /* options */ })
+    require('unplugin-3d-object/webpack')({ /* options */ })
   ]
 }
 ```
@@ -82,7 +92,7 @@ module.exports = {
 // nuxt.config.js
 export default {
   buildModules: [
-    ['unplugin-starter/nuxt', { /* options */ }],
+    ['unplugin-3d-object/nuxt', { /* options */ }],
   ],
 }
 ```
@@ -99,7 +109,7 @@ export default {
 module.exports = {
   configureWebpack: {
     plugins: [
-      require('unplugin-starter/webpack')({ /* options */ }),
+      require('unplugin-3d-object/webpack')({ /* options */ }),
     ],
   },
 }

@@ -1,0 +1,23 @@
+  # Blender MTL File: 'mount.blend'
+  # Material Count: 2
+
+  newmtl PlaneMaterial
+  Ns 96.078431
+  Ka 0.000000 0.000000 0.000000
+  Kd 0.999999 0.999999 0.999999
+  Ks 0.999999 0.999999 0.999999
+  Ni 1.000000
+  d 1.000000
+  map_Kd grass.jpg
+  illum 2
+
+  newmtl Material.001 # Bad material name
+  Ns 96.078431
+  Ka 0.000000 0.000000 0.000000
+  Kd 0.999999 0.999999 0.999999
+  Ks 0.000000 0.000000 0.000000
+  Ni 1.000000
+  d 1.000000
+  illum 1
+  map_Kd no-existing-texture.png
+
