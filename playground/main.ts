@@ -6,9 +6,11 @@ const canvas = document.createElement('canvas')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-const renderer = new WebGLRenderer({ canvas })
+const renderer = new WebGLRenderer({ canvas, alpha: true })
 const camera = new PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000)
-camera.position.z = 6
+camera.position.z = 0
+camera.position.x = 4
+camera.position.y = 2
 
 const light = new PointLight(0xFFFFFF, 1)
 light.position.y = 5
