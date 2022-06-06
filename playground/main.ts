@@ -1,7 +1,6 @@
 import { AmbientLight, PerspectiveCamera, PointLight, Scene, WebGLRenderer } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { createObject } from './object-loader'
-import model from './house/casa.obj'
+import house from './house/casa.obj?three'
 
 const canvas = document.createElement('canvas')
 canvas.width = window.innerWidth
@@ -15,7 +14,7 @@ const light = new PointLight(0xFFFFFF, 1)
 light.position.y = 5
 
 const scene = new Scene()
-  .add(createObject(model))
+  .add(house)
   .add(new AmbientLight(0xFFFFFF, 0.5))
   .add(light)
 

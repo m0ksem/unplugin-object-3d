@@ -24,3 +24,8 @@ declare module '*.obj' {
   }
   export default result
 }
+
+declare module '*.obj?three' {
+  const mesh: import('three').Group
+  export default mesh
+}

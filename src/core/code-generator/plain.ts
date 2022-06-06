@@ -1,8 +1,8 @@
-import type { MTL } from './mtl-parser'
-import { generateMtl } from './code-generator/mtl'
-import { generateImportMap, generateImports, replacePathsToImports } from './code-generator/imports'
+import type { MTL } from '../mtl-parser'
+import { generateMtl } from './_mtl'
+import { generateImportMap, generateImports, replacePathsToImports } from './_imports'
 
-export const generateCode = (obj: string, mtl?: MTL) => {
+export const generatePlainObjectCode = (obj: string, mtl?: MTL) => {
   if (!mtl) {
     return `export defaut {
   obj: \`${obj}\`
