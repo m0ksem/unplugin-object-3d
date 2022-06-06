@@ -1,5 +1,6 @@
 export interface Options {
   // define your plugin options here
+  warnings: boolean
 }
 
 export interface Obj {

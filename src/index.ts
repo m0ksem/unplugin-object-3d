@@ -5,12 +5,18 @@ import { parseObj } from './core/obj-parser'
 import { loadFile } from './core/file-loader'
 import { generatePlainObjectCode, generateThreeCode } from './core/code-generator'
 
-export default createUnplugin<Options>(() => ({
+const defaultOptions: Options = {
+  warnings: true,
+}
+
+export default createUnplugin<Options>(_options => ({
   name: 'unplugin-3d-object',
   transformInclude(id) {
     return id.endsWith('.obj') || id.endsWith('.obj?three')
   },
   transform(objSource, id) {
+    const options = { ...defaultOptions, ..._options }
+
     const [path, query] = id.split('?')
 
     const generateCode = query === 'three' ? generateThreeCode : generatePlainObjectCode
@@ -24,13 +30,13 @@ export default createUnplugin<Options>(() => ({
     const { source: mtlSource, path: mtlLocation, error } = loadFile(mtlPath, path)
 
     // Show warn, but let user use only .obj file
-    if (error) { this.warn(error) }
+    if (error && options.warnings) { this.warn(error) }
     if (!mtlSource) { return generateCode(objSource) }
 
     const { mtl, errors } = parseMtl(mtlSource, mtlLocation)
 
     // Show warn, but let user use mtl without textures
-    if (errors.length) { errors.forEach(error => this.warn(error)) }
+    if (errors.length && options.warnings) { errors.forEach(error => this.warn(error)) }
 
     return generateCode(objSource, mtl)
   },

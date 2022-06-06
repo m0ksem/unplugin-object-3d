@@ -1,38 +1,20 @@
 # unplugin-3d-object
 
-Load whole 3d object while importing .obj files
+Load whole 3d object while importing .obj files.
 ## Things to-do
-- Multiple mtl lib support
-- Build-in three-loader support (`import cat from 'cat.obj?three'` must return `Mesh`)
-- Tree-shaking? (Convert object to esm exports)
-- Tests
-
-## Usage
-- Place .obj, .mtl and textures somewhere in your project
-- Import .obj file
-```js
-import cat from 'somewhere/cat.obj'
-```
-- Example usage with three.js
-```js
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
-import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js'
-
-// TODO: Ensure we can set textures so easily
-const createObject = (obj, mtl, textures) => {
-  const m = mtlLoader.parse(mtl, '')
-  objLoader.setMaterials(m)
-  objLoader.setMaterials(textures)
-  return objLoader.parse(obj)
-}
-
-const cat = createObject(cat.obj, cat.mtl, cat.materials)
-```
+- [ ] Multiple mtl lib support;
+- [ ] Parse MTL properties, not only maps;
+- [x] Build-in three-loader support;
+- [ ] Tests (file names, parsing, etc.);
 
 ## Install
 
 ```bash
 npm i unplugin-3d-object
+# or
+yarn add unplugin-3d-object
+# or
+pnpm i unplugin-3d-object
 ```
 
 <details>
@@ -116,3 +98,27 @@ module.exports = {
 ```
 
 <br></details>
+
+
+## How it works?
+Plugin load .obj, scan for mtl libs and trying to load them. From mtl plugin also trying to load textures. Plugin transform .obj files to [`OBJ`](./playground/main.ts) type.
+
+### Example
+```ts
+import house from 'house/house.obj'
+// ...
+createObject(house.obj, house.mtl.toString(), house.mtl.paths)
+```
+### Example with three.js
+```js
+import house from 'house/house.obj?three'
+// ...
+scene.add(house)
+```
+Example: [`playground`](./playground/main.ts)
+
+### Warnings
+If .obj file require texture or mtl file that can not be found it will throw warning. 
+> Make sure change absolute paths to relative in .obj and .mtl
+
+You can turn off warnings by passing `warnings: false` in plugin options if you don't care about missing assets.
