@@ -1,6 +1,6 @@
 {
   "name": "unplugin-3d-object",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.1",
   "description": "Import 3d objects with obj, mtl and textures whilte importing .obj file",
   "keywords": [
     "unplugin",
