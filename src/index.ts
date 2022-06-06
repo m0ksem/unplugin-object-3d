@@ -23,15 +23,11 @@ export default createUnplugin<Options>(() => ({
     if (error) { this.warn(error) }
     if (!mtlSource) { return generateCode(objSource) }
 
-    const { materials, errors } = parseMtl(mtlSource, mtlLocation)
+    const { mtl, errors } = parseMtl(mtlSource, mtlLocation)
 
     // Show warn, but let user use mtl without textures
     if (errors.length) { errors.forEach(error => this.warn(error)) }
 
-    if (Object.keys(materials).length === 0) {
-      return generateCode(objSource, mtlSource)
-    }
-
-    return generateCode(objSource, mtlSource, materials)
+    return generateCode(objSource, mtl)
   },
 }))

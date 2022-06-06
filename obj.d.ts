@@ -7,15 +7,19 @@ declare module '*.obj' {
   const result: {
     /** Obj file source */
     obj: string
-    /** Mtl file source */
-    mtl?: string
-    /** All textures stored in array */
-    textures?: AssetName[]
-    /** All textures sorted by material name and texture type: map_Kd, map_Nd etc. */
-    materials?: {
-      [materialName: string]: {
-        [textureName in AssetName]: string
+    /** Mtl */
+    mtl?: {
+      /** Map of original MTL paths to import paths resolved by bundler */
+      paths: Record<string, string>
+      /** Map of material name and it maps */
+      materials: {
+        [materialName: string]: {
+          maps: Partial<Record<AssetName, string>>
+        }
       }
+
+      get raw(): string
+      toString(): string
     }
   }
   export default result

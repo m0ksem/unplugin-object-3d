@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from 'fs'
-import { dirname, isAbsolute, resolve } from 'path'
+import { dirname, isAbsolute, posix, resolve, sep } from 'path'
 
 // TODO: not sure if fs can be used here
 
@@ -8,7 +8,9 @@ export enum FileLoaderErrorCode {
   ANY_OTHER = 2,
 }
 
-export const normalizePath = (path: string, source: string) => isAbsolute(path) ? path : resolve(dirname(source), path)
+const toPosix = (path: string) => path.split(sep).join(posix.sep).replace(/\\/g, '/').replace(/\\\\/g, '/')
+
+export const normalizePath = (path: string, source: string) => isAbsolute(path) ? toPosix(path) : resolve(dirname(source), toPosix(path))
 /** Make sure to use `normalizePath` */
 export const exists = (normalizedPath: string) => existsSync(normalizedPath)
 
