@@ -101,7 +101,7 @@ module.exports = {
 
 
 ## How it works?
-Plugin load .obj, scan for mtl libs and trying to load them. From mtl plugin also trying to load textures. Plugin transform .obj files to [`OBJ`](./playground/main.ts) type.
+Plugin load .obj, scan for mtl libs and trying to load them. From mtl plugin also trying to load textures. Plugin transform .obj files to [`OBJ`](./src/types.ts) type.
 
 ### Example
 ```ts

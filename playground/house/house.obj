@@ -1,6 +1,6 @@
-# Blender v2.80 (sub 74) OBJ File: 'casa.blend'
+# Blender v2.80 (sub 74) OBJ File: 'house.blend'
 # www.blender.org
-mtllib casa.mtl
+mtllib house.mtl
 o PAREDES_Cubo
 v -0.773139 -0.212296 0.671224
 v -0.743287 -0.210131 -0.652394

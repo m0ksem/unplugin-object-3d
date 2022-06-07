@@ -1,4 +1,4 @@
-# Blender MTL File: 'casa.blend'
+# Blender MTL File: 'house.blend'
 # Material Count: 13
 
 newmtl CESPED
@@ -81,7 +81,7 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
 illum 3
-map_Kd 1.jpg
+map_Kd water.jpg
 
 newmtl madera
 Ns 3.142569
