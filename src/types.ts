@@ -16,5 +16,5 @@ export interface Obj {
 
     get raw(): string
     toString(): string
-  }
+  }[]
 }

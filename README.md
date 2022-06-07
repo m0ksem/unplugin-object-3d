@@ -1,11 +1,6 @@
 # unplugin-3d-object
 
 Load whole 3d object while importing .obj files.
-## Things to-do
-- [ ] Multiple mtl lib support;
-- [ ] Parse MTL properties, not only maps;
-- [x] Build-in three-loader support;
-- [ ] Tests (file names, parsing, etc.);
 
 ## Install
 

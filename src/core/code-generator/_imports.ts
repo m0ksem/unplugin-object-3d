@@ -10,19 +10,23 @@ type ImportName = string
 type ImportPath = string
 type ImportMap = Record<ImportPath, ImportName>
 
-export const generateImportMap = (mtl: MTL) => {
+export const generateImportMap = (mtls: MTL[]) => {
   const map: ImportMap = {}
-  Object
-    .entries(mtl.materials)
-    .forEach(([materialName, assets]) => {
-      const maps = assets.maps
 
-      Object
-        .entries(maps)
-        .forEach(([assetName, path]) => {
-          map[path] = generateImportName(materialName, assetName)
-        })
-    })
+  mtls.forEach((mtl) => {
+    Object
+      .entries(mtl.materials)
+      .forEach(([materialName, assets]) => {
+        const maps = assets.maps
+
+        Object
+          .entries(maps)
+          .forEach(([assetName, path]) => {
+            map[path] = generateImportName(materialName, assetName)
+          })
+      })
+  })
+
   return map
 }
 

@@ -1,4 +1,5 @@
 import { createUnplugin } from 'unplugin'
+import type { MTL } from './core/mtl-parser'
 import { parseMtl } from './core/mtl-parser'
 import type { Options } from './types'
 import { parseObj } from './core/obj-parser'
@@ -21,22 +22,28 @@ export default createUnplugin<Options>(_options => ({
 
     const generateCode = query === 'three' ? generateThreeCode : generatePlainObjectCode
 
-    const { mtlPath } = parseObj(objSource)
+    const { mtlPaths } = parseObj(objSource)
 
-    if (!mtlPath) {
+    if (!mtlPaths) {
       return generateCode(objSource)
     }
 
-    const { source: mtlSource, path: mtlLocation, error } = loadFile(mtlPath, path)
+    const mtl = mtlPaths
+      .map((mtlPath) => {
+        const { source: mtlSource, path: mtlLocation, error } = loadFile(mtlPath, path)
 
-    // Show warn, but let user use only .obj file
-    if (error && options.warnings) { this.warn(error) }
-    if (!mtlSource) { return generateCode(objSource) }
+        // Show warn, but let user use only .obj file
+        if (error && options.warnings) { this.warn(error) }
+        if (!mtlSource) { return null }
 
-    const { mtl, errors } = parseMtl(mtlSource, mtlLocation)
+        const { mtl, errors } = parseMtl(mtlSource, mtlLocation)
 
-    // Show warn, but let user use mtl without textures
-    if (errors.length && options.warnings) { errors.forEach(error => this.warn(error)) }
+        // Show warn, but let user use mtl without textures
+        if (errors.length && options.warnings) { errors.forEach(error => this.warn(error)) }
+
+        return mtl
+      })
+      .filter(m => m != null) as MTL[]
 
     return generateCode(objSource, mtl)
   },

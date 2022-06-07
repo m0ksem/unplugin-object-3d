@@ -3,8 +3,8 @@ import type { Options } from 'tsup'
 export default <Options>{
   entryPoints: [
     'src/*.ts',
-    'src/plugins/*.js',
-    'src/plugins/*.ts',
+    'src/exports/*.js',
+    'src/exports/*.ts',
   ],
   clean: true,
   format: ['cjs', 'esm'],

@@ -14,7 +14,7 @@ const assetKeys = [
   'decal',
 ]
 
-export type MTL = NonNullable<Obj['mtl']>
+export type MTL = NonNullable<Obj['mtl']>[number]
 
 /**
  * Parse .mtl file

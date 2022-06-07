@@ -1,19 +1,22 @@
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js'
 import { LoadingManager } from 'three'
+import type { Obj } from './../types'
 
 const objLoader = new OBJLoader()
 const loadingManager = new LoadingManager()
 const mtlLoader = new MTLLoader(loadingManager)
 mtlLoader.manager = loadingManager
 
-export const createThreeObject = (model) => {
-  loadingManager.setURLModifier((url) => {
-    return model.mtl?.paths[url] || url
-  })
+export const createThreeObject = (model: Obj) => {
   if (model.mtl) {
-    const m = mtlLoader.parse(model.mtl.raw, '')
-    objLoader.setMaterials(m)
+    model.mtl.forEach((mtl) => {
+      loadingManager.setURLModifier((url) => {
+        return mtl.paths[url] || url
+      })
+      const material = mtlLoader.parse(mtl.raw, '')
+      objLoader.setMaterials(material)
+    })
   }
 
   return objLoader.parse(model.obj)

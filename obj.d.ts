@@ -20,7 +20,7 @@ declare module '*.obj' {
 
       get raw(): string
       toString(): string
-    }
+    }[]
   }
   export default result
 }

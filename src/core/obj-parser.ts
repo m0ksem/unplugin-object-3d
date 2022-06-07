@@ -1,10 +1,9 @@
 const mtllibRegex = /^mtllib (.*)$/gm
 
 export const parseObj = (code: string) => {
-  const mtllib = code.match(mtllibRegex)
+  const mtllibs = code.match(mtllibRegex)
 
   return {
-    // TODO: Obj file may use multiple mtllibs
-    mtlPath: mtllib ? mtllib[0].replace('mtllib ', '').trim() : null,
+    mtlPaths: mtllibs ? mtllibs.map(mtllib => mtllib.replace('mtllib ', '').trim()) : null,
   }
 }

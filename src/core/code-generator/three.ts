@@ -2,7 +2,7 @@ import type { MTL } from '../mtl-parser'
 import { generateMtl } from './_mtl'
 import { generateImportMap, generateImports, replacePathsToImports } from './_imports'
 
-export const generateThreeCode = (obj: string, mtl?: MTL) => {
+export const generateThreeCode = (obj: string, mtl?: MTL[]) => {
   if (!mtl) {
     return `import { createThreeObject } from 'unplugin-3d-object/create-three-object'
     

@@ -50,8 +50,8 @@
       "import": "./dist/types.mjs"
     },
     "./create-three-object": {
-      "require": "./dist/plugins/three.js",
-      "import": "./dist/plugins/three.mjs"
+      "require": "./dist/exports/three.js",
+      "import": "./dist/exports/three.mjs"
     },
     "./*": "./*"
   },
