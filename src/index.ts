@@ -11,7 +11,7 @@ const defaultOptions: Options = {
 }
 
 export default createUnplugin<Options>(_options => ({
-  name: 'unplugin-3d-object',
+  name: 'unplugin-object-3d',
   transformInclude(id) {
     return id.endsWith('.obj') || id.endsWith('.obj?three')
   },

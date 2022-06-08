@@ -1,5 +1,5 @@
 {
-  "name": "unplugin-3d-object",
+  "name": "unplugin-object-3d",
   "version": "0.0.1-beta.2",
   "description": "Import 3d objects with obj, mtl and textures whilte importing .obj file",
   "keywords": [
@@ -12,14 +12,14 @@
     "mtl",
     "textures"
   ],
-  "homepage": "https://github.com/m0ksem/unplugin-3d-object",
+  "homepage": "https://github.com/m0ksem/unplugin-object-3d",
   "bugs": {
-    "url": "https://github.com/m0ksem/unplugin-3d-object/issues"
+    "url": "https://github.com/m0ksem/unplugin-object-3d/issues"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m0ksem/unplugin-3d-object"
+    "url": "git+https://github.com/m0ksem/unplugin-object-3d"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",

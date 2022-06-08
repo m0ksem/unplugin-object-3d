@@ -1,15 +1,15 @@
-# unplugin-3d-object
+# unplugin-object-3d
 
 Load whole 3d object while importing .obj files.
 
 ## Install
 
 ```bash
-npm i unplugin-3d-object
+npm i unplugin-object-3d
 # or
-yarn add unplugin-3d-object
+yarn add unplugin-object-3d
 # or
-pnpm i unplugin-3d-object
+pnpm i unplugin-object-3d
 ```
 
 <details>
@@ -17,11 +17,11 @@ pnpm i unplugin-3d-object
 
 ```ts
 // vite.config.ts
-import loader3dObject from 'unplugin-3d-object/vite'
+import Object3d from 'unplugin-object-3d/vite'
 
 export default defineConfig({
   plugins: [
-    loader3dObject({ /* options */ }),
+    Object3d({ /* options */ }),
   ],
 })
 ```
@@ -35,11 +35,11 @@ Example: [`playground/`](./playground/)
 
 ```ts
 // rollup.config.js
-import loader3dObject from 'unplugin-3d-object/rollup'
+import Object3d from 'unplugin-object-3d/rollup'
 
 export default {
   plugins: [
-    loader3dObject({ /* options */ }),
+    Object3d({ /* options */ }),
   ],
 }
 ```
@@ -55,7 +55,7 @@ export default {
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-3d-object/webpack')({ /* options */ })
+    require('unplugin-object-3d/webpack')({ /* options */ })
   ]
 }
 ```
@@ -69,7 +69,7 @@ module.exports = {
 // nuxt.config.js
 export default {
   buildModules: [
-    ['unplugin-3d-object/nuxt', { /* options */ }],
+    ['unplugin-object-3d/nuxt', { /* options */ }],
   ],
 }
 ```
@@ -86,7 +86,7 @@ export default {
 module.exports = {
   configureWebpack: {
     plugins: [
-      require('unplugin-3d-object/webpack')({ /* options */ }),
+      require('unplugin-object-3d/webpack')({ /* options */ }),
     ],
   },
 }

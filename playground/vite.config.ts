@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
-import Unplugin from 'unplugin-3d-object/vite'
+import Object3d from 'unplugin-object-3d/vite'
 
 export default defineConfig({
   plugins: [
     Inspect(),
-    Unplugin(),
+    Object3d(),
   ],
 })

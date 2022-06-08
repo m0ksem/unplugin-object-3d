@@ -4,7 +4,7 @@ import { generateImportMap, generateImports, replacePathsToImports } from './_im
 
 export const generateThreeCode = (obj: string, mtl?: MTL[]) => {
   if (!mtl) {
-    return `import { createThreeObject } from 'unplugin-3d-object/create-three-object'
+    return `import { createThreeObject } from 'unplugin-object-3d/create-three-object'
     
     export defaut createThreeJsObject({
   obj: \`${obj}\`
@@ -15,7 +15,7 @@ export const generateThreeCode = (obj: string, mtl?: MTL[]) => {
   const imports = generateImports(importsMap)
   const mtlCode = replacePathsToImports(generateMtl(mtl), importsMap)
 
-  return `import { createThreeObject } from 'unplugin-3d-object/create-three-object'
+  return `import { createThreeObject } from 'unplugin-object-3d/create-three-object'
 ${imports}
   
 export default createThreeObject({

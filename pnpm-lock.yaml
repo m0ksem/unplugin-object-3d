@@ -42,14 +42,14 @@ importers:
       '@types/three': ^0.141.0
       nodemon: ^2.0.16
       three: ^0.141.0
-      unplugin-3d-object: ../
+      unplugin-object-3d: ../
       vite: ^2.9.9
       vite-plugin-inspect: ^0.5.0
     devDependencies:
       '@types/three': 0.141.0
       nodemon: 2.0.16
       three: 0.141.0
-      unplugin-3d-object: link:..
+      unplugin-object-3d: link:..
       vite: 2.9.9
       vite-plugin-inspect: 0.5.0_vite@2.9.9
 
