@@ -1,6 +1,6 @@
 # unplugin-object-3d
 
-Load whole 3d object while importing .obj files.
+Load whole 3d object while importing `.obj` files with mtllibs and textures as object or Three.js object.
 
 ## Install
 
@@ -113,7 +113,21 @@ scene.add(house)
 Example: [`playground`](./playground/main.ts)
 
 ### Warnings
-If .obj file require texture or mtl file that can not be found it will throw warning. 
-> Make sure change absolute paths to relative in .obj and .mtl
+If `.obj` file require texture or mtl file that can not be found plugin will throw warning. 
+> Make sure change absolute paths to relative in `.obj` and `.mtl`
 
 You can turn off warnings by passing `warnings: false` in plugin options if you don't care about missing assets.
+
+### Types
+Make sure `obj.d.ts` included in your tsconfig.
+<details>
+<summary>tsconfig.json example</summary><br>
+
+```ts
+{
+  "include": ["node_modules/unplugin-3d-object/obj.d.ts"],
+  ...
+}
+```
+
+<br></details>

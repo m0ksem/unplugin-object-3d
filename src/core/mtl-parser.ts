@@ -1,5 +1,5 @@
 import type { Obj } from '../types'
-import { exists, normalizePath } from './file-loader'
+import { createNonExisitingFile, exists, normalizePath } from './file-loader'
 
 // Mast be same as in obj.d.ts
 const assetKeys = [
@@ -42,7 +42,7 @@ export const parseMtl = (code: string, id: string) => {
         if (assetKeys.includes(key.toLocaleLowerCase())) {
           const relativePath = normalizePath(path, id)
           if (!exists(relativePath)) {
-            errors.push(`Can not resolve asset "${path}" in ${id}.\nTrying to find ${relativePath}`)
+            errors.push(createNonExisitingFile(path, id))
             continue
           }
           maps[key as keyof MTL['materials'][string]['maps']] = relativePath

@@ -1,5 +1,6 @@
 export interface Options {
-  warnings: boolean
+  /** Show warning when .obj file missing .mtl or texture */
+  missingFileWarning: boolean
 }
 
 export interface Obj {

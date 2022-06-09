@@ -14,6 +14,11 @@ export const normalizePath = (path: string, source: string) => isAbsolute(path) 
 /** Make sure to use `normalizePath` */
 export const exists = (normalizedPath: string) => existsSync(normalizedPath)
 
+export const createNonExisitingFile = (filepath: string, source: string) => {
+  const filename = posix.basename(filepath)
+  return `Can not resolve asset "${filename}" in ${source}`
+}
+
 /**
  * @param source where file loading from
  */
@@ -22,7 +27,7 @@ export const loadFile = (path: string, source: string) => {
     if (isAbsolute(path)) {
       return {
         // Force user to use relative path instead of absolute path,
-        // becuase 3D programs can generate absolute path and we will not able to load it on another machine
+        // becuase 3D soft can generate absolute path and we will not able to load it on another machine
         error: `Absolute file path detected in ${path}. Model files must use relative paths.`,
       }
     }
@@ -35,8 +40,12 @@ export const loadFile = (path: string, source: string) => {
     }
   }
   catch (e: any) {
-    return {
-      error: e.message,
+    if (e.code === 'ENOENT') {
+      return {
+        error: createNonExisitingFile(path, source),
+      }
     }
+
+    throw e
   }
 }
