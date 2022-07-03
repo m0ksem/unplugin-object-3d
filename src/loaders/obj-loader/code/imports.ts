@@ -22,6 +22,7 @@ export const generateImportMap = (mtls: MTL[]) => {
         Object
           .entries(maps)
           .forEach(([assetName, path]) => {
+            if (!path) { return }
             map[path] = generateImportName(materialName, assetName)
           })
       })

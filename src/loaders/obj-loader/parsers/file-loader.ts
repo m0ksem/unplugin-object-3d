@@ -1,8 +1,6 @@
 import { existsSync, readFileSync } from 'fs'
 import { dirname, isAbsolute, posix, resolve, sep } from 'path'
 
-// TODO: not sure if fs can be used here
-
 export enum FileLoaderErrorCode {
   ABSOLUTE_PATH = 1,
   ANY_OTHER = 2,
