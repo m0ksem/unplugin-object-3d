@@ -29,3 +29,8 @@ declare module '*.obj?three' {
   const mesh: import('three').Object3D
   export default mesh
 }
+
+declare module '*.glb?three' {
+  const mesh: Promise<import('three/examples/jsm/loaders/GLTFLoader.js').GLTF>
+  export default mesh
+}

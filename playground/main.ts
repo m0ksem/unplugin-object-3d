@@ -1,7 +1,8 @@
-import { AmbientLight, PerspectiveCamera, PointLight, Scene, WebGLRenderer } from 'three'
+import { AmbientLight, AnimationMixer, Clock, PerspectiveCamera, PointLight, Scene, WebGLRenderer } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import house from './house/house.obj?three'
 import cube from './cube/cube.obj?three'
+import car from './car/car.glb?three'
 
 const canvas = document.createElement('canvas')
 canvas.width = window.innerWidth
@@ -22,11 +23,29 @@ const scene = new Scene()
   .add(house)
   .add(cube)
 
+const clock = new Clock()
+let mixer: AnimationMixer | null = null
+car.then(({ scene: model, animations }) => {
+  scene.add(model)
+
+  model.position.y = 2
+  model.position.x = -4
+  model.scale.set(0.5, 0.5, 0.5)
+  mixer = new AnimationMixer(model)
+  animations.forEach((a) => {
+    mixer!.clipAction(a).play()
+  })
+})
+
 const render = () => {
   requestAnimationFrame(render)
   controls.update()
   cube.rotateY(0.01)
   renderer.render(scene, camera)
+
+  if (mixer) {
+    mixer.update(clock.getDelta())
+  }
 }
 render()
 
