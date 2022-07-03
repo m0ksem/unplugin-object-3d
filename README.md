@@ -1,6 +1,6 @@
 # unplugin-object-3d
 
-Simply import 3d model as ThreeJS object.
+Create ThreeJS object with one line of code
 
 ## Install
 
@@ -94,9 +94,13 @@ module.exports = {
 
 <br></details>
 
+## Supported loader extensions
+- `.obj`
+- `.glb` and `.gltf`
 
 ## How it works?
-Plugin load .obj, scan for mtl libs and trying to load them. From mtl plugin also trying to load textures. Plugin return ThreeJS Object3d.
+Plugin load `.obj`, scan for `mtl` libs and trying to load them. From mtl plugin also trying to load textures. Plugin return ThreeJS Object3d.
+For `.glb` and `.gltf` files plugin load them asynchronously and adds methods for animations.
 
 ## Example
 ```js
