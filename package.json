@@ -49,9 +49,9 @@
       "require": "./dist/types.js",
       "import": "./dist/types.mjs"
     },
-    "./create-three-object": {
-      "require": "./dist/exports/three.js",
-      "import": "./dist/exports/three.mjs"
+    "./internal/*": {
+      "require": "./dist/exports/*.js",
+      "import": "./dist/exports/*.mjs"
     },
     "./*": "./*"
   },

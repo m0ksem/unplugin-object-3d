@@ -1,4 +1,4 @@
-import type { MTL } from './../mtl-parser'
+import type { MTL } from '../parsers/mtl-parser'
 
 const toString = () => 'toString() { return this.raw }'
 const raw = (code: string) => `get raw() { return \`${code}\` }`

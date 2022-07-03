@@ -1,4 +1,4 @@
-import type { MTL } from './../mtl-parser'
+import type { MTL } from '../parsers/mtl-parser'
 
 const normalizeMaterialName = (name: string): string => {
   return name.replace(/\./, '_')

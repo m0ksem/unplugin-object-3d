@@ -1,4 +1,4 @@
-import type { Obj } from '../types'
+import type { Obj } from '../../../types'
 import { createNonExisitingFile, exists, normalizePath } from './file-loader'
 
 // Mast be same as in obj.d.ts

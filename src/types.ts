@@ -1,7 +1,7 @@
-export interface Options {
+export type Options = Partial<{
   /** Show warning when .obj file missing .mtl or texture */
   missingFileWarning: boolean
-}
+}>
 
 export interface Obj {
   /** Obj file source */
