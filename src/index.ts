@@ -4,6 +4,7 @@ import * as loaders from './loaders'
 
 const defaultOptions: Options = {
   missingFileWarning: true,
+  draco: false,
 }
 
 export default createUnplugin<Options>((options = defaultOptions) => ({

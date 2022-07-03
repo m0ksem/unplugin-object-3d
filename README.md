@@ -1,6 +1,6 @@
 # unplugin-object-3d
 
-Load whole 3d object while importing `.obj` files with mtllibs and textures as object or Three.js object.
+Simply import 3d model as ThreeJS object.
 
 ## Install
 
@@ -96,36 +96,56 @@ module.exports = {
 
 
 ## How it works?
-Plugin load .obj, scan for mtl libs and trying to load them. From mtl plugin also trying to load textures. Plugin transform .obj files to [`OBJ`](./src/types.ts) type.
+Plugin load .obj, scan for mtl libs and trying to load them. From mtl plugin also trying to load textures. Plugin return ThreeJS Object3d.
 
-### Example
-```ts
-import house from 'house/house.obj'
-// ...
-createObject(house.obj, house.mtl.toString(), house.mtl.paths)
-```
-### Example with three.js
+## Example
 ```js
-import house from 'house/house.obj?three'
+import house from 'house.obj?three'
+import car from 'car.glb?three'
 // ...
-scene.add(house)
+scene.add(house).add(car)
+//...
+const render = () => {
+  requestAnimationFrame(render)
+  // ...
+  car.animate()
+}
 ```
 Example: [`playground`](./playground/main.ts)
 
-### Warnings
-If `.obj` file require texture or mtl file that can not be found plugin will throw warning. 
+## Plugin options
+
+| Option | Type | Description  |
+|---|---|---|
+|warnings | `boolean`  | If `.obj` file require texture or mtl file that can not be found plugin will throw warning. You can turn off warnings by passing `warnings: false` in plugin options if you don't care about missing assets.    |
+|draco|`boolean`| Use draco loader for GLB and GLTF models |
+|   |   |   |
+
+
 > Make sure change absolute paths to relative in `.obj` and `.mtl`
 
-You can turn off warnings by passing `warnings: false` in plugin options if you don't care about missing assets.
+## Concepts and extensions
 
-### Types
-Make sure `obj.d.ts` included in your tsconfig.
+For `.glb` and `.gltf` plugin uses [`Async3dObject`](./src/exports/async-3d-object.ts). To keep your code clean async model can be added to scene. You can also listen to load event. It also adds `animate` method, so you can simply call it in render function.
+```ts
+scene.add(car)
+
+const render = () => {
+  car.animate()
+}
+
+car.addEventListener('loaded', () => { /* ... */ })
+```
+`.obj` loads synchronously.
+
+## Types
+Make sure `files.d.ts` included in your tsconfig to have TS suggestion for imports.
 <details>
 <summary>tsconfig.json example</summary><br>
 
 ```ts
 {
-  "include": ["node_modules/unplugin-3d-object/obj.d.ts"],
+  "include": ["node_modules/unplugin-3d-object/files.d.ts"],
   ...
 }
 ```

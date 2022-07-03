@@ -1,7 +1,18 @@
 export type Options = Partial<{
-  /** Show warning when .obj file missing .mtl or texture */
+  /**
+   * Show warning when .obj file missing .mtl or texture
+   * @default true
+   */
   missingFileWarning: boolean
+
+  /**
+   * Use draco loader
+   * @default false
+   */
+  draco: boolean
 }>
+
+type AssetName = 'map_Ka' | 'map_Kd' | 'map_Ks' | 'map_Ns' | 'map_d' | 'map_bump' | 'bump' | 'disp' | 'decal'
 
 export interface Obj {
   /** Obj file source */
@@ -19,3 +30,4 @@ export interface Obj {
     toString(): string
   }[]
 }
+

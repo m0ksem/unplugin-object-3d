@@ -23,7 +23,7 @@ const scene = new Scene()
 camera.position.set(4, 2, 0)
 light.position.set(0, 5, 0)
 cube.position.set(-6, 2, -4)
-car.position.set(-4, 0.3, 3)
+car.position.set(-4, 0.6, 3)
 car.scale.set(0.5, 0.5, 0.5)
 
 const render = () => {
@@ -31,6 +31,7 @@ const render = () => {
   controls.update()
   cube.rotateY(0.01)
   renderer.render(scene, camera)
+  car.animate()
 }
 render()
 

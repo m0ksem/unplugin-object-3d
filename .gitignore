@@ -80,4 +80,4 @@ dist
 # IDE
 .idea
 /*.d.ts
-!/obj.d.ts
+!/files.d.ts
