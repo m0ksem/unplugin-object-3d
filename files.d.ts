@@ -1,10 +1,10 @@
 declare module '*.obj?three' {
-  const mesh: import('three').Object3D
+  const mesh: import('three').Group
   export default mesh
 }
 
 declare module '*.glb?three' {
-  const mesh: import('three').Object3D & {
+  const mesh: import('three').Group & {
     animationMixer: import('three').AnimationMixer
     isLoading: boolean
     animate: () => void
@@ -13,7 +13,7 @@ declare module '*.glb?three' {
 }
 
 declare module '*.gltf?three' {
-  const mesh: import('three').Object3D & {
+  const mesh: import('three').Group & {
     animationMixer: import('three').AnimationMixer
     isLoading: boolean
     animate: () => void
